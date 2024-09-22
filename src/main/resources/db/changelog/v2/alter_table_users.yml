@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-table-users
+      author: r.zhiltsov
+      changes:
+        - renameColumn:
+            tableName: users
+            oldColumnName: inn
+            newColumnName: user_inn
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: requisites_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    referencedTableName: requisites
+                    referencedColumnNames: id
+                    foreignKeyName: requisites_id_fk
+

@@ -2,14 +2,14 @@ package com.aston.puppet.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,16 +21,7 @@ public class GetUserResponse {
 
     private String lastName;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate birthDate;
+    private String paymentAccount;
 
-    private String inn;
-
-    private String snils;
-
-    private String passportNumber;
-
-    private String login;
-
-    private String password;
+    private String kbk;
 }

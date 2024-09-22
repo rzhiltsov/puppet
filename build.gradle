@@ -10,6 +10,7 @@ plugins {
 dependencies {
     implementation(libs.postgresql)
     implementation(libs.spring.jpa)
+    implementation(libs.spring.web)
     implementation(libs.spring.validation)
     implementation(libs.liquibase)
     implementation(libs.mapstruct)
@@ -22,6 +23,12 @@ dependencies {
     annotationProcessor(libs.lombok)
     annotationProcessor(libs.lombok.mapstruct.binding)
     annotationProcessor(libs.mapstruct.processor)
+}
+
+configurations {
+    testAnnotationProcessor {
+        extendsFrom annotationProcessor
+    }
 }
 
 java {

@@ -7,3 +7,4 @@ services:
     environment:
       POSTGRES_DB: ${DB_URL}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: unless-stopped

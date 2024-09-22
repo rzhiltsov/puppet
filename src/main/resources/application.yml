@@ -10,4 +10,4 @@ spring:
       ddl-auto: validate
 
   liquibase:
-    change-log: db/changelog/changelog-master.yml
+    change-log: db/changelog/changelog_master.yml
