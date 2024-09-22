@@ -34,7 +34,6 @@ configurations {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
-        vendor = JvmVendorSpec.ORACLE
     }
 }
 
@@ -62,13 +61,10 @@ jacocoTestReport {
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: [
-                    "**/entity/**",
-                    "**/mapper/**",
-                    "**/exception/**",
-                    "**/config/**",
-                    "**/dto/**",
-                    "**/PuppetApplication.class"
+            fileTree(dir: it, includes: [
+                    "**/repository/**",
+                    "**/service/**",
+                    "**/controller/**"
             ])
         }))
     }
