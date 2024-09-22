@@ -1,0 +1,23 @@
+[versions]
+spring = "3.3.2"
+spring-dependency-management = "1.1.5"
+lombok = "1.18.32"
+mapstruct = "1.6.0"
+lombok-mapstruct-binding = "0.2.0"
+
+[libraries]
+liquibase = {module = "org.liquibase:liquibase-core"}
+lombok = {module = "org.projectlombok:lombok", version.ref = "lombok"}
+lombok-mapstruct-binding = {module = "org.projectlombok:lombok-mapstruct-binding", version.ref = "lombok-mapstruct-binding"}
+mapstruct = {module = "org.mapstruct:mapstruct", version.ref = "mapstruct"}
+mapstruct-processor = {module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct"}
+postgresql = {module = "org.postgresql:postgresql"}
+spring-jpa = {module = "org.springframework.boot:spring-boot-starter-data-jpa"}
+spring-validation = {module = "org.springframework.boot:spring-boot-starter-validation"}
+spring-test = {module = "org.springframework.boot:spring-boot-starter-test"}
+spring-testcontainers = {module = "org.springframework.boot:spring-boot-testcontainers"}
+testcontainers-postgres = {module = "org.testcontainers:postgresql"}
+
+[plugins]
+spring-boot-plugin = {id = "org.springframework.boot", version.ref = "spring"}
+spring-dependency-management = {id = "io.spring.dependency-management", version.ref = "spring-dependency-management"}

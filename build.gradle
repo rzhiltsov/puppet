@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'jacoco'
+
+    alias(libs.plugins.spring.boot.plugin)
+    alias(libs.plugins.spring.dependency.management)
+}
+
+dependencies {
+    implementation(libs.postgresql)
+    implementation(libs.spring.jpa)
+    implementation(libs.spring.validation)
+    implementation(libs.liquibase)
+    implementation(libs.mapstruct)
+    implementation(libs.lombok)
+
+    testImplementation(libs.spring.test)
+    testImplementation(libs.spring.testcontainers)
+    testImplementation(libs.testcontainers.postgres)
+
+    annotationProcessor(libs.lombok)
+    annotationProcessor(libs.lombok.mapstruct.binding)
+    annotationProcessor(libs.mapstruct.processor)
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+        vendor = JvmVendorSpec.ORACLE
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+checkstyle {
+    toolVersion = "10.12.4"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true
+        xml.required = true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "**/entity/**",
+                    "**/mapper/**",
+                    "**/exception/**",
+                    "**/config/**",
+                    "**/dto/**",
+                    "**/PuppetApplication.class"
+            ])
+        }))
+    }
+}
