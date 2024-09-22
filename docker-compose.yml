@@ -8,3 +8,28 @@ services:
       POSTGRES_DB: ${DB_URL}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     restart: unless-stopped
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.17.1
+    environment:
+      discovery.type: single-node
+    ports:
+      - 9200:9200
+    restart: unless-stopped
+
+  logstash:
+    container_name: logstash
+    image: logstash:7.17.1
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - 5044:5044
+    restart: unless-stopped
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.17.1
+    ports:
+      - 5601:5601
+    restart: unless-stopped

@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.liquibase)
     implementation(libs.mapstruct)
     implementation(libs.lombok)
+    implementation(libs.logstash.logback.encoder)
 
     testImplementation(libs.spring.test)
     testImplementation(libs.spring.testcontainers)
